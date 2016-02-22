@@ -7,13 +7,13 @@ Attribute VB_Name = "algo_trie_insertion"
 '---------------------------------------------------------------------------------------
 
 
-Option Base 0
+Option Base 1
 
 
 
 Sub test()
 
-Dim tabdata(6) As Integer
+Dim tabdata(6) As Variant
 
 tabdata(1) = 5
 tabdata(2) = 2
@@ -22,7 +22,8 @@ tabdata(4) = 6
 tabdata(5) = 1
 tabdata(6) = 3
 
-Call TriSelection(tabdata)
+Call TriSelection2(tabdata)
+
 
 End Sub
 
@@ -30,34 +31,30 @@ End Sub
 'http://www.giacomazzi.fr/infor/Tri/PgmVB4.htm#TSelection
 'http://www.cmdvb.fr/5-methodes-pour-trier-un-tableau-en-visual-basic-selection-insertion-bulles-shell-rapide/
 
-Sub TriSelection(Tableau As Variant)
-'************************************************************
-' Tri d'un tableau selon l'algorithme du tri par sélection
-' Tableau       Tableau à trier
-' Ipos_min_Tableau  Indice de l'échelon pos_mini à trier
-' IMax_Tableau  Indice de l'échelon maxi à trier
-'************************************************************
-Dim W_Long As Long
-Dim i As Long
-Dim pos_min As Long
-Dim pos As Long
 
 
-pos = LBound(Tableau)
-While (pos < UBound(Tableau))
-    ' Recherche du plus petit élément dans le reste du tableau
-    pos_min = pos
-    For i = (pos + 1) To IMax_Tableau
-        If Tableau(pos_min) > Tableau(i) Then
-            pos_min = i
+Sub TriSelection2(oarray() As Variant)
+
+poscurr = LBound(oarray)
+
+Do While poscurr < UBound(oarray)
+    min = poscurr
+    
+    For i = poscurr + 1 To UBound(oarray)
+    
+        If oarray(min) > oarray(i) Then
+            min = i
         End If
-    Next i
-    ' Echange de T(pos_min) et T(pos)
-    W_Long = Tableau(pos)
-    Tableau(pos) = Tableau(pos_min)
-    Tableau(pos_min) = W_Long
-    pos = pos + 1
-Wend
+    
+    Next
 
-Debug.Print Join(Tableau, ";")
+    tmp = oarray(poscurr)
+    oarray(poscurr) = oarray(min)
+    oarray(min) = tmp
+    
+    poscurr = poscurr + 1
+
+Loop
+
 End Sub
+
