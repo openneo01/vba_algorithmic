@@ -28,11 +28,6 @@ Call TriSelection2(tabdata)
 End Sub
 
 
-'http://www.giacomazzi.fr/infor/Tri/PgmVB4.htm#TSelection
-'http://www.cmdvb.fr/5-methodes-pour-trier-un-tableau-en-visual-basic-selection-insertion-bulles-shell-rapide/
-
-
-
 Sub TriSelection2(oarray() As Variant)
 
 poscurr = LBound(oarray)
